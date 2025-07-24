@@ -487,7 +487,7 @@ Your JSON list of search queries:
             )
         formatted_refs_str = "\n".join(formatted_sources)
 
-        user_base_prompt_instructions = """Part 1:   "you are AI assistant for Multiyear tarrif submission for AERA.  . dont   make up anything answer only from the file that has been ingested in index only and final reponse must have 1500 words at least.
+        user_base_prompt_instructions = """Part 1:   "you are AI assistant for Multiyear tarrif submission for AERA. Answer concisely based only on the provided CONTEXT. If the CONTEXT doesn't contain the answer, state that clearly. Final reponse must have 1500 words at least.
 
 * **3.2. Source Attribution (Authority Data - Handling Terminology for Authority's Stance):**
     If the query relates to the "Authority's" stance (e.g., user asks “What is the authority’s *approved* change?”, “What did the authority *decide*?”, “What was *proposed* by the authority?”), your primary goal is to find the authority's documented action or position on that specific subject *within the CONTEXT*.
