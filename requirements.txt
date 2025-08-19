@@ -1,9 +1,10 @@
 streamlit
 openai
-pandas
-python-docx
 azure-core
 azure-search-documents
+pandas
+python-docx
+requests
 langchain
 langchain-openai
-dotenv
+python-dotenv
