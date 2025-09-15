@@ -1,10 +1,12 @@
 streamlit
 openai
-azure-core
-azure-search-documents
+python-dotenv
 pandas
 python-docx
 requests
+beautifulsoup4
+markdown
+azure-core
+azure-search-documents
 langchain
 langchain-openai
-python-dotenv
