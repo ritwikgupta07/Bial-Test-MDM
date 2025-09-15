@@ -16,6 +16,7 @@ from docx.shared import Inches
 import io
 from dotenv import load_dotenv
 
+
 # New imports for improved document download
 import markdown
 from bs4 import BeautifulSoup
@@ -308,7 +309,7 @@ Your JSON list of search queries:"""
                 max_tokens=16000,
             )
             plan_str = response.choices[0].message.content
-            if match := re.search(r"[.*]", plan_str, re.DOTALL):
+            if match := re.search(r"\[.*\]", plan_str, re.DOTALL):
                 query_plan = json.loads(match.group(0))
                 if isinstance(query_plan, list) and all(
                     isinstance(q, str) for q in query_plan
@@ -409,8 +410,8 @@ Your JSON list of search queries:"""
         1.  **Attempt to Match User's Exact Term First:** Always search the CONTEXT for information explicitly matching the user's specific terminology (e.g., if the user asks for "approved," look first for "approved by the authority"). If found, present this.
         2.  **If User's Query Implies Finality (e.g., asks for "approved," "final figures," "decision"):**
             * And their *exact term* is NOT found in the CONTEXT for that item:
-                * **Prioritize searching the CONTEXT for other Final/Conclusive terms** (e.g., "decided by the authority," "authority's decision"). If one of these is found, present this. You MUST then state clearly: "You asked for 'approved.' The document describes what was '*[actual term found, e.g., decided by the authority]*' as follows: [data and references]."
-                * If no Final/Conclusive terms are found for that item in the CONTEXT, then (and only then) look for Provisional/Draft terms (e.g., "proposed by the authority"). If found, present this, stating: "You asked for 'approved.' A final approval or decision was not found for this item in the provided context. However, the authority '*proposed*' the following: [data and references]."
+                * **Prioritize searching the CONTEXT for other Final/Conclusive terms** (e.g., "decided by the authority," "authority's decision"). If one of these is found, present this. You MUST then state clearly: "You asked for 'approved.' The document describes what was '*[actual term found, e.g., decided by the authority]*' as follows: \[data and references]."
+                * If no Final/Conclusive terms are found for that item in the CONTEXT, then (and only then) look for Provisional/Draft terms (e.g., "proposed by the authority"). If found, present this, stating: "You asked for 'approved.' A final approval or decision was not found for this item in the provided context. However, the authority '*proposed*' the following: \[data and references]."
                 * If neither of the above is found, look for Analytical/Consideration terms and report similarly with clarification.
         3.  **If User's Query Uses a Provisional/Draft Term (e.g., "proposed"):**
             * Prioritize finding information matching those Provisional/Draft terms in the CONTEXT.
